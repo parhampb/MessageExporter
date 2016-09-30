@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2A4E6E</color>
+    <color name="colorPrimaryDark">#0A3255</color>
+    <color name="colorAccent">#AA3939</color>
+
+    <color name="textColourBlack">#373737</color>
+    <color name="textColourWhite">#ECF0F1</color>
+
+    <color name="buttonStrokeColour">#95a5a6</color>
+    <color name="viewUnderLineColour">#7f8c8d</color>
+
+    <color name="snackBarColour">#383838</color>
+</resources>

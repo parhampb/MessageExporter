@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Message Exporter</string>
+
+    <string name="title_font">sans-serif-thin</string>
+    <string name="normal_font">sans-serif</string>
+</resources>

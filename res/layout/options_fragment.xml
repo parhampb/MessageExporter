@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="contact"
+            type="com.hazeltechnology.messageexporter.ContactObject" />
+        
+        <variable
+            name="handler"
+            type="com.hazeltechnology.messageexporter.OptionsFragment" />
+    </data>
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stage 2: Select Options"
+            android:textColor="@color/textColourWhite"
+            android:textSize="24sp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@string/title_font"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="2.5dp"
+            android:layout_marginBottom="2.5dp">
+
+            <ProgressBar
+                android:layout_width="?android:attr/listPreferredItemHeightLarge"
+                android:layout_height="?android:attr/listPreferredItemHeightLarge"
+                style="?android:attr/progressBarStyleLarge"
+                android:indeterminate="true"
+                android:layout_centerVertical="true"
+                android:visibility="@{contact.showProgress ? View.VISIBLE : View.INVISIBLE}"/>
+
+            <View
+                android:layout_width="?android:attr/listPreferredItemHeightLarge"
+                android:layout_height="?android:attr/listPreferredItemHeightLarge"
+                android:background="@drawable/view_background_circle_white"
+                android:layout_centerVertical="true"
+                android:visibility="@{!contact.showProgress ? View.VISIBLE : View.INVISIBLE}"/>
+
+            <ImageView
+                android:id="@+id/optionsFragmentContactImageView"
+                android:layout_width="?android:attr/listPreferredItemHeightLarge"
+                android:layout_height="?android:attr/listPreferredItemHeightLarge"
+                android:layout_centerVertical="true"
+                android:padding="0.25dp"
+                android:src="@{contact.profilePicture}"/>
+
+            <TextView
+                android:id="@+id/optionsFragmentNameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColourWhite"
+                android:textSize="26sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@string/title_font"
+                android:layout_toEndOf="@id/optionsFragmentContactImageView"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:paddingStart="10dp"
+                android:text="@{contact.name}"/>
+
+            <TextView
+                android:id="@+id/optionsFragmentMsgCountTextViewPlaceHolder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColourWhite"
+                android:textSize="18sp"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@string/title_font"
+                android:layout_toEndOf="@id/optionsFragmentContactImageView"
+                android:layout_below="@id/optionsFragmentNameTextView"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:paddingStart="10dp"
+                android:text="Message Count: "/>
+
+            <TextView
+                android:id="@+id/optionsFragmentNumberTextViewPlaceHolder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColourWhite"
+                android:textSize="18sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@string/title_font"
+                android:layout_toEndOf="@id/optionsFragmentContactImageView"
+                android:layout_below="@id/optionsFragmentMsgCountTextViewPlaceHolder"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:paddingStart="10dp"
+                android:text="Number: "/>
+
+            <TextView
+                android:id="@+id/optionsFragmentMsgCountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColourWhite"
+                android:textSize="18sp"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="@string/normal_font"
+                android:layout_toEndOf="@id/optionsFragmentMsgCountTextViewPlaceHolder"
+                android:layout_below="@id/optionsFragmentNameTextView"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:paddingStart="5dp"
+                android:text="@{contact.messageCountText}"/>
+
+            <TextView
+                android:id="@+id/optionsFragmentNumberTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColourWhite"
+                android:textSize="18sp"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="@string/normal_font"
+                android:layout_toEndOf="@id/optionsFragmentNumberTextViewPlaceHolder"
+                android:layout_below="@id/optionsFragmentMsgCountTextViewPlaceHolder"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:paddingStart="5dp"
+                android:text="@{contact.numberFormatted}"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Options: (Included In Export)"
+            android:textColor="@color/textColourWhite"
+            android:textSize="18sp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:fontFamily="@string/title_font"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp">
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/listPreferredItemHeightSmall"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/name_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:clickable="false"
+                        android:onCheckedChanged="@{(cb, isChecked) -> handler.setNameChecked(isChecked)}"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Name"
+                        android:textColor="@color/textColourWhite"
+                        android:textSize="20sp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@string/title_font"
+                        android:layout_weight="1"/>
+
+                    <Button
+                        android:id="@+id/name_edit_button"
+                        android:layout_width="?android:attr/listPreferredItemHeightLarge"
+                        android:layout_height="match_parent"
+                        android:text="Edit"
+                        android:textColor="@color/textColourWhite"
+                        android:textSize="14sp"
+                        android:fontFamily="@string/title_font"
+                        android:background="@drawable/rounded_button"
+                        android:onClick="@{() -> handler.onClickNameEdit()}"
+                        android:enabled="@{handler.nameChecked}"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/listPreferredItemHeightSmall"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/number_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:checked="true"
+                        android:onCheckedChanged="@{(cb, isChecked) -> handler.setNumberChecked(isChecked)}"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Number"
+                        android:textColor="@color/textColourWhite"
+                        android:textSize="20sp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@string/title_font"
+                        android:layout_weight="1"/>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/listPreferredItemHeightSmall"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/date_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:checked="true"
+                        android:onCheckedChanged="@{(cb, isChecked) -> handler.setDateChecked(isChecked)}"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Date (Message Date)"
+                        android:textColor="@color/textColourWhite"
+                        android:textSize="20sp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@string/title_font"
+                        android:layout_weight="1"/>
+
+                    <Button
+                        android:id="@+id/date_edit_button"
+                        android:layout_width="?android:attr/listPreferredItemHeightLarge"
+                        android:layout_height="match_parent"
+                        android:text="Edit"
+                        android:textColor="@color/textColourWhite"
+                        android:textSize="14sp"
+                        android:fontFamily="@string/title_font"
+                        android:background="@drawable/rounded_button"
+                        android:onClick="@{() -> handler.onClickDateEdit()}"
+                        android:enabled="@{handler.dateChecked}"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/listPreferredItemHeightSmall"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/msg_count_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:checked="true"
+                        android:onCheckedChanged="@{(cb, isChecked) -> handler.setMsgCountChecked(isChecked)}"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Message Count"
+                        android:textColor="@color/textColourWhite"
+                        android:textSize="20sp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@string/title_font"
+                        android:layout_weight="1"/>
+
+
+                </LinearLayout>
+
+
+
+                <Button
+                    android:id="@+id/export_span_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/listPreferredItemHeightSmall"
+                    android:text="Set Export Span"
+                    android:textColor="@color/textColourWhite"
+                    android:textSize="16sp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@string/title_font"
+                    android:background="@drawable/rounded_button"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:paddingStart="35dp"
+                    android:paddingEnd="35dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginStart="7.5dp"
+                    android:layout_marginEnd="7.5dp"
+                    android:visibility="@{handler.showSpanGroup ? View.GONE : View.VISIBLE}"
+                    android:onClick="@{() -> handler.onClickExpandSpanGroup()}"/>
+
+                <LinearLayout
+                    android:id="@+id/export_span_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/listPreferredItemHeightSmall"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+
+                    android:visibility="@{handler.showSpanGroup ? View.VISIBLE : View.GONE}">
+
+                    <Button
+                        android:id="@+id/export_span_from_button"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="From Start"
+                        android:textColor="@color/textColourWhite"
+                        android:textSize="14sp"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@string/title_font"
+                        android:background="@drawable/rounded_button"
+                        android:paddingStart="35dp"
+                        android:paddingEnd="35dp"
+                        android:layout_marginStart="7.5dp"
+                        android:layout_marginEnd="7.5dp"
+                        android:onClick="@{() -> handler.onClickSpanFrom()}"/>
+
+                    <Button
+                        android:id="@+id/export_span_to_button"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="To Final"
+                        android:textColor="@color/textColourWhite"
+                        android:textSize="14sp"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@string/title_font"
+                        android:background="@drawable/rounded_button"
+                        android:paddingStart="35dp"
+                        android:paddingEnd="35dp"
+                        android:layout_marginStart="7.5dp"
+                        android:layout_marginEnd="7.5dp"
+                        android:onClick="@{() -> handler.onClickSpanTo()}"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="25dp">
+
+            <Button
+                android:id="@+id/back_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Back"
+                android:textColor="@color/textColourWhite"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@string/title_font"
+                android:background="@drawable/rounded_button"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingStart="35dp"
+                android:paddingEnd="35dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="7.5dp"
+                android:onClick="@{() -> handler.onBackPressed()}"/>
+
+            <Button
+                android:id="@+id/continue_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Continue"
+                android:textColor="@color/textColourWhite"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@string/title_font"
+                android:background="@drawable/rounded_button"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingStart="35dp"
+                android:paddingEnd="35dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="7.5dp"
+                android:layout_marginBottom="15dp"
+                android:onClick="@{() -> handler.onClickContinue()}"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

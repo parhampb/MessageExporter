@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="textFieldText"
+            type="java.lang.String" />
+        <variable
+            name="handler"
+            type="com.hazeltechnology.messageexporter.ExportSuccessFragment" />
+    </data>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{textFieldText}"
+            android:textColor="@color/textColourWhite"
+            android:textSize="24sp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@string/title_font"
+            android:gravity="center"/>
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Back"
+                android:textColor="@color/textColourWhite"
+                android:textSize="16sp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@string/title_font"
+                android:background="@drawable/rounded_button"
+                android:layout_marginEnd="7.5dp"
+                android:onClick="@{() -> handler.onBackPressed()}"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Share"
+                android:textColor="@color/textColourWhite"
+                android:textSize="16sp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@string/title_font"
+                android:background="@drawable/rounded_button"
+                android:layout_marginStart="7.5dp"
+                android:onClick="@{() -> handler.onClickShare()}"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

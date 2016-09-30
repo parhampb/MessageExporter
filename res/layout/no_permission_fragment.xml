@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/explanation_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColourWhite"
+                android:textSize="24sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@string/normal_font"
+                android:gravity="center" />
+
+            <Button
+                android:id="@+id/launch_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Launch"
+                android:textColor="@color/textColourWhite"
+                android:textSize="24sp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@string/title_font"
+                android:background="@drawable/rounded_button"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingStart="35dp"
+                android:paddingEnd="35dp"
+                android:paddingLeft="35dp"
+                android:paddingRight="35dp"
+                android:layout_marginBottom="45dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+</layout>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="options"
+            type="com.hazeltechnology.messageexporter.OptionsObject" />
+        <variable
+            name="handler"
+            type="com.hazeltechnology.messageexporter.OptionsEditDateDialog" />
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColourWhite"
+                android:textSize="26sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="25dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="@string/title_font"
+                android:gravity="center_horizontal"
+                android:text="@{handler.dateFormattedText}"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:onCheckedChanged="@{(radioGroup, id) -> handler.dateFormatSelected(radioGroup, id)}">
+
+                <RadioButton
+                    android:id="@+id/dateFormat1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HH:mm:ss\tdd/MM/yy"
+                    android:textColor="@color/textColourWhite"
+                    android:textSize="18sp"
+                    android:checked='@{options.dateFormat.equals("HH:mm:ss\tdd/MM/yy")}'/>
+
+                <RadioButton
+                    android:id="@+id/dateFormat2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HH:mm:ss\tMM/dd/yy"
+                    android:textColor="@color/textColourWhite"
+                    android:textSize="18sp"
+                    android:checked='@{options.dateFormat.equals("HH:mm:ss\tMM/dd/yy")}'/>
+
+                <RadioButton
+                    android:id="@+id/dateFormat3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="dd/MM/yyyy"
+                    android:textColor="@color/textColourWhite"
+                    android:textSize="18sp"
+                    android:checked='@{options.dateFormat.equals("dd/MM/yyyy")}'/>
+
+                <RadioButton
+                    android:id="@+id/dateFormat4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MM/dd/yyyy"
+                    android:textColor="@color/textColourWhite"
+                    android:textSize="18sp"
+                    android:checked='@{options.dateFormat.equals("MM/dd/yyyy")}'/>
+
+                <RadioButton
+                    android:id="@+id/dateFormat5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="dd/MMM/yyyy"
+                    android:textColor="@color/textColourWhite"
+                    android:textSize="18sp"
+                    android:checked='@{options.dateFormat.equals("dd/MMM/yyyy")}'/>
+
+                <RadioButton
+                    android:id="@+id/dateFormatCustom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Custom"
+                    android:textColor="@color/textColourWhite"
+                    android:textSize="18sp"
+                    android:checked="@{options.exportDateFormatCustom}"/>
+
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:visibility="@{handler.showCustomFormatLayout ? View.VISIBLE : View.GONE}">
+
+                <EditText
+                    android:id="@+id/dateFormatCustomEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:inputType="textNoSuggestions"
+                    android:textColor="@color/textColourWhite"
+                    android:textSize="20sp"
+                    android:hint="Set Format"
+                    android:text='@{(options.dateFormat.equals("HH:mm:ss\tdd/MM/yy") || options.dateFormat.equals("HH:mm:ss\tMM/dd/yy") || options.dateFormat.equals("dd/MM/yyyy") || options.dateFormat.equals("MM/dd/yyyy") || options.dateFormat.equals("dd/MMM/yyyy")) ? "" : options.dateFormat}'
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:onTextChanged="@{(text, start, end, count) -> handler.dateFormatTextWatcher(text)}" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Need Help?"
+                    android:textColor="@color/textColourWhite"
+                    android:textSize="16sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginEnd="15dp"
+                    android:fontFamily="@string/title_font"
+                    android:gravity="center_horizontal"
+                    android:onClick="@{() -> handler.onClickFormatHelp()}"/>
+
+            </LinearLayout>
+
+            <RadioGroup
+                android:paddingTop="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:onCheckedChanged="@{(group, id) -> handler.setSortAscending(id)}">
+
+                <RadioButton
+                    android:id="@+id/dateDescending"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sort Msg Date Descending"
+                    android:textColor="@color/textColourWhite"
+                    android:textSize="18sp"
+                    android:checked="@{!options.exportSortAscending}"/>
+
+                <RadioButton
+                    android:id="@+id/dateAscending"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sort Msg Date Ascending"
+                    android:textColor="@color/textColourWhite"
+                    android:textSize="18sp"
+                    android:checked="@{options.exportSortAscending}"/>
+
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cancel"
+                    android:textColor="@color/textColourWhite"
+                    android:textSize="16sp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@string/title_font"
+                    android:background="@drawable/rounded_button"
+                    android:layout_marginEnd="7.5dp"
+                    android:onClick="@{() -> handler.dismiss()}"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Set"
+                    android:textColor="@color/textColourWhite"
+                    android:textSize="16sp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@string/title_font"
+                    android:background="@drawable/rounded_button"
+                    android:layout_marginStart="7.5dp"
+                    android:onClick="@{() -> handler.onClickSet()}"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>

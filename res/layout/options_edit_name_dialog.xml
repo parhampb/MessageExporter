@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="contact"
+            type="com.hazeltechnology.messageexporter.OptionsObject" />
+        <variable
+            name="handler"
+            type="com.hazeltechnology.messageexporter.OptionsEditNameDialog" />
+    </data>
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp">
+        <TextView
+            android:id="@+id/dialogOptionsEditNameContactTextPlaceHolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contact Name:"
+            android:textColor="@color/textColourWhite"
+            android:textSize="20sp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@string/title_font" />
+
+        <EditText
+            android:id="@+id/contact_name_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:textColor="@color/textColourWhite"
+            android:textSize="20sp"
+            android:layout_marginEnd="15dp"
+            android:paddingStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/dialogOptionsEditNameContactTextPlaceHolder"
+            android:text="@{contact.contactName}"
+            android:maxLines="1" />
+
+        <TextView
+            android:id="@+id/dialogOptionsEditNameYouTextPlaceHolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Name:"
+            android:textColor="@color/textColourWhite"
+            android:textSize="20sp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@string/title_font"
+            android:layout_below="@id/dialogOptionsEditNameContactTextPlaceHolder" />
+
+        <EditText
+            android:id="@+id/my_name_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:textColor="@color/textColourWhite"
+            android:textSize="20sp"
+            android:layout_marginEnd="15dp"
+            android:paddingStart="10dp"
+            android:layout_toEndOf="@id/dialogOptionsEditNameYouTextPlaceHolder"
+            android:layout_below="@id/dialogOptionsEditNameContactTextPlaceHolder"
+            android:text="@{contact.myName}"
+            android:cursorVisible="false"
+            android:maxLines="1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/dialogOptionsEditNameYouTextPlaceHolder"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cancel"
+                android:textColor="@color/textColourWhite"
+                android:textSize="16sp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@string/title_font"
+                android:background="@drawable/rounded_button"
+                android:layout_marginEnd="7.5dp"
+                android:layout_marginRight="7.5dp"
+                android:onClick="@{() -> handler.dismiss()}"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Set"
+                android:textColor="@color/textColourWhite"
+                android:textSize="16sp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@string/title_font"
+                android:background="@drawable/rounded_button"
+                android:layout_marginStart="7.5dp"
+                android:layout_marginLeft="7.5dp"
+                android:onClick="@{() -> handler.handleClickSet()}"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

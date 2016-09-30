@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="contact"
+            type="com.hazeltechnology.messageexporter.ContactObject"
+            />
+    </data>
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="2.5dp"
+        android:layout_marginBottom="2.5dp"
+        android:padding="5dp"
+        android:background="@drawable/list_item_background">
+
+        <ProgressBar
+            android:layout_width="?android:attr/listPreferredItemHeightSmall"
+            android:layout_height="?android:attr/listPreferredItemHeightSmall"
+            style="?android:attr/progressBarStyleLarge"
+            android:indeterminate="true"
+            android:layout_centerVertical="true"
+            android:visibility="@{contact.showProgress ? View.VISIBLE : View.INVISIBLE}"/>
+
+        <View
+            android:layout_width="?android:attr/listPreferredItemHeightSmall"
+            android:layout_height="?android:attr/listPreferredItemHeightSmall"
+            android:background="@drawable/view_background_circle_white"
+            android:layout_centerVertical="true"
+            android:visibility="@{!contact.showProgress ? View.VISIBLE : View.INVISIBLE}"/>
+
+        <ImageView
+            android:id="@+id/listItemConversationListContactImageViewProfile"
+            android:layout_width="?android:attr/listPreferredItemHeightSmall"
+            android:layout_height="?android:attr/listPreferredItemHeightSmall"
+            android:layout_centerVertical="true"
+            android:padding="0.25dp"
+            android:src="@{contact.profilePicture}"/>
+
+        <TextView
+            android:id="@+id/listItemConversationListContactTextViewNamePlaceHolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name: "
+            android:fontFamily="@string/title_font"
+            android:textColor="@color/textColourWhite"
+            android:textSize="15sp"
+            android:paddingStart="10dp"
+            android:layout_toEndOf="@id/listItemConversationListContactImageViewProfile" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textColourWhite"
+            android:textSize="15sp"
+            android:layout_toEndOf="@id/listItemConversationListContactTextViewNamePlaceHolder"
+            android:paddingStart="5dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="@{contact.name}"
+            android:fontFamily="@string/normal_font" />
+
+        <TextView
+            android:id="@+id/listItemConversationListContactTextViewMessagePlaceHolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textColourWhite"
+            android:textSize="15sp"
+            android:text="Message: "
+            android:fontFamily="@string/title_font"
+            android:layout_toEndOf="@id/listItemConversationListContactImageViewProfile"
+            android:layout_below="@id/listItemConversationListContactTextViewNamePlaceHolder"
+            android:paddingStart="10dp"
+            android:layout_marginTop="2.5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textColourWhite"
+            android:textSize="15sp"
+            android:layout_toEndOf="@id/listItemConversationListContactTextViewMessagePlaceHolder"
+            android:layout_below="@id/listItemConversationListContactTextViewNamePlaceHolder"
+            android:paddingStart="5dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="@{contact.messageSnippet}"
+            android:fontFamily="@string/normal_font"
+            android:layout_marginTop="2.5dp" />
+
+    </RelativeLayout>
+</layout>
